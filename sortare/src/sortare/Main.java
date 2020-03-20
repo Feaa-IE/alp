@@ -1,11 +1,21 @@
 package sortare;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Main {
 
 	public static void main(String[] args) {
 		double[] toSort = new double[] { 12, 2.7, 5, 4, 1.6, 1.9, 3.2, 10 };
+		
+		//inlocuim vectorul hard codat
+		//vector cu putine element
+		//toSort = genVectorAleator(10, 100, 10);
+		//vector cu numar relativ mare de elemnte
+		//toSort = genVectorAleator(10, 1000, 100);
+		//vector cu multe elemente
+		toSort = genVectorAleator(10, 10000, 1000);
+
 		System.out.println("Vector de test:" + Arrays.toString(toSort));
 		// clonam vectorul de test pentru fiecare apel de algoritm
 		double[] toSort2 = toSort.clone();
@@ -14,24 +24,39 @@ public class Main {
 		double[] toSort5 = toSort.clone();
 
 		// apel bubble sort
+		long start = System.nanoTime();
 		bubbleSort(toSort);
+		long end = System.nanoTime();
 		System.out.println("Bubble sort: " + Arrays.toString(toSort));
+		System.out.println("Durata: " + (end - start) + " ns");
 
 		// apel insertion sort
+		start = System.nanoTime();
 		insertionSort(toSort2);
+		end = System.nanoTime();
 		System.out.println("Insertion sort: " + Arrays.toString(toSort2));
+		System.out.println("Durata: " + (end - start) + " ns");
 
 		// apel selection sort
+		start = System.nanoTime();
 		selectionSort(toSort3);
+		end = System.nanoTime();
 		System.out.println("Selection sort: " + Arrays.toString(toSort3));
+		System.out.println("Durata: " + (end - start) + " ns");
 
 		// apel merge sort
+		start = System.nanoTime();
 		mergeSort(toSort4, 0, toSort4.length - 1);
+		end = System.nanoTime();
 		System.out.println("Merge sort: " + Arrays.toString(toSort4));
+		System.out.println("Durata: " + (end - start) + " ns");
 
 		// apel quick sort
+		start = System.nanoTime();
 		quickSort(toSort5, 0, toSort5.length - 1);
+		end = System.nanoTime();
 		System.out.println("Quick sort: " + Arrays.toString(toSort5));
+		System.out.println("Durata: " + (end - start) + " ns");
 	}
 
 	// bubble sort
@@ -157,6 +182,23 @@ public class Main {
 		toPartition[k + 1] = pivot;
 		toPartition[d] = temp;
 		return k;
+	}
+
+	// genereaza vector cu valori random
+	private static double[] genVectorAleator(double min, double max, int cateNumere) {
+		// creem un vector cu dimensiunea dorita data de parametrul cateNumere
+		double[] valori = new double[cateNumere];
+
+		// parcurgem vectorul pentru a-l popula cu valori
+		for (int i = 0; i < valori.length; i++) {
+			// generam aleator si setam pe pozitia curenta o valoare double cuprinsa intre
+			// min si max
+			double aleator = min + Math.random() * (max - min);
+			// rotunjim la 2 zecimale entru lizibilitate
+			aleator = Math.floor(aleator * 100) / 100;
+			valori[i] = aleator;
+		}
+		return valori;
 	}
 
 }
