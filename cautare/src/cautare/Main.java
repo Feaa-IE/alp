@@ -37,7 +37,7 @@ public class Main {
 		nod3 = new BTNode(59, null, null);
 		nod2 = new BTNode(55, nod4, nod3);
 		nod1 = new BTNode(45, nod5, nod2);
-		//valoarea cautata este 9
+		// valoarea cautata este 9
 		BTNode nodCautat = searchInBT(nod1, 9);
 		if (nodCautat == null) {
 			System.out.println("Valoarea cautata nu este in arborele binar de cautare");
